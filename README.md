@@ -1,3 +1,6 @@
+[![Docker Pulls](https://img.shields.io/docker/pulls/enow/kafka.svg)](https://hub.docker.com/r/enow/storm/)
+[![Docker Stars](https://img.shields.io/docker/stars/enow/kafka.svg)](https://hub.docker.com/r/enow/storm/)
+
 # docker-storm
 
 Dockerfiles for building a storm cluster<sub>1.0.2</sub>. Referenced by [https://github.com/wurstmeister/storm-docker](https://github.com/wurstmeister/storm-docker)
