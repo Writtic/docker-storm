@@ -1,15 +1,15 @@
-[![Docker Pulls](https://img.shields.io/docker/pulls/enow/kafka.svg)](https://hub.docker.com/r/enow/storm/)
-[![Docker Stars](https://img.shields.io/docker/stars/enow/kafka.svg)](https://hub.docker.com/r/enow/storm/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/enow/storm.svg)](https://hub.docker.com/r/enow/storm/)
+[![Docker Stars](https://img.shields.io/docker/stars/enow/storm.svg)](https://hub.docker.com/r/enow/storm/)
 
 # docker-storm
 
-Dockerfiles for building a storm cluster<sub>1.0.2</sub>. Referenced by [https://github.com/wurstmeister/storm-docker](https://github.com/wurstmeister/storm-docker)
+Dockerfiles for building a storm cluster<sub>1.0.2</sub> Referenced by [https://github.com/wurstmeister/storm-docker](https://github.com/wurstmeister/storm-docker)
 
 The images are available directly from [https://index.docker.io](https://hub.docker.com/u/enow)
 
 ##Pre-Requisites
 
-- install docker-compose [http://docs.docker.com/compose/install/](http://docs.docker.com/compose/install/)
+- install [docker-compose](http://docs.docker.com/compose/install/)
 
 ##Usage
 
@@ -65,6 +65,6 @@ Following the example above, after discovering the nimbus host IP (could be loca
 ### How can I connect to one of the containers?
 Find the forwarded ssh port for the container you wish to connect to (use `docker-compose ps`)
 
-    $ ssh root@`boot2docker ip` -p $CONTAINER_PORT
+    $ ssh root@`docker-machine ip` -p $CONTAINER_PORT
 
 The password is 'enow' (from: https://registry.hub.docker.com/u/enow/base/dockerfile/).
