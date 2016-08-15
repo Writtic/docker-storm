@@ -1,4 +1,4 @@
-FROM enow/storm:1.0.2
+FROM enow/storm
 MAINTAINER writtic <writtic@gmail.com>
 
 EXPOSE 6700
