@@ -61,7 +61,7 @@
     <appender-ref ref="A1" />
   </logger>
 
-  <logger name="backtype.storm">
+  <logger name="org.apache.storm">
     <level value="INFO" />
     <appender-ref ref="A1" />
   </logger>
