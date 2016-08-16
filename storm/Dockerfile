@@ -1,5 +1,4 @@
 FROM enow/main
-
 MAINTAINER writtic <writtic@gmail.com>
 
 ENV STORM_VERSION 1.0.2
