@@ -67,4 +67,4 @@ Find the forwarded ssh port for the container you wish to connect to (use `docke
 
     $ ssh root@`docker-machine ip` -p $CONTAINER_PORT
 
-The password is 'enow' (from: https://registry.hub.docker.com/u/enow/base/dockerfile/).
+The password is '1q2w3e!@#$' (from: https://registry.hub.docker.com/u/enow/main/dockerfile/).
