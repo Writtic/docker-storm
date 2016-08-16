@@ -31,6 +31,6 @@ ADD supervisor/storm-daemon.conf /home/storm/storm-daemon.conf
 RUN chown -R storm:storm $STORM_HOME && chmod u+x /home/storm/entrypoint.sh
 
 # Add VOLUMEs to allow backup of config and logs
-VOLUME ["/usr/share/apache-storm/conf","/var/log/storm"]
+VOLUME ["/usr/share/apache-storm/conf", "/var/log/storm"]
 
 ENTRYPOINT ["/bin/bash", "/home/storm/entrypoint.sh"]
