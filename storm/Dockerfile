@@ -3,7 +3,9 @@ MAINTAINER writtic <writtic@gmail.com>
 
 ENV STORM_VERSION 1.0.2
 # Download and Install Apache Storm from http://mirror.apache-kr.org/storm.html
-RUN wget -q -O - http://mirror.apache-kr.org/storm/apache-storm-$STORM_VERSION/apache-storm-$STORM_VERSION.tar.gz | tar -xzf - -C /opt
+RUN wget -q -O - http://mirror.apache-kr.org/storm/apache-storm-$STORM_VERSION/apache-storm-$STORM_VERSION.tar.gz | tar -xzf - -C /opt && \
+    rm -rf apache-storm-$STORM_VERSION.tar.gz && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ENV STORM_HOME /opt/apache-storm-$STORM_VERSION
 # Create storm group and user
 RUN groupadd storm; useradd --gid storm --home-dir /home/storm --create-home --shell /bin/bash storm; \
