@@ -1,17 +1,17 @@
-[![Docker Pulls](https://img.shields.io/docker/pulls/enow/storm.svg)](https://hub.docker.com/r/enow/storm/)
-[![Docker Stars](https://img.shields.io/docker/stars/enow/storm.svg)](https://hub.docker.com/r/enow/storm/)
 
-# docker-storm
+
+
+# docker-storm [![Docker Pulls](https://img.shields.io/docker/pulls/enow/storm.svg)](https://hub.docker.com/r/enow/storm/) [![Docker Stars](https://img.shields.io/docker/stars/enow/storm.svg)](https://hub.docker.com/r/enow/storm/)
 
 Dockerfiles for building a storm cluster<sub>1.0.2</sub> Referenced by [https://github.com/wurstmeister/storm-docker](https://github.com/wurstmeister/storm-docker)
 
 The images are available directly from [https://index.docker.io](https://hub.docker.com/u/enow)
 
-##Pre-Requisites
+## Pre-Requisites
 
 - install [docker-compose](http://docs.docker.com/compose/install/)
 
-##FAQ
+## FAQ
 ### How can I access Storm UI from my host?
 Take a look at docker-compose.yml:
 
@@ -49,6 +49,6 @@ And when the storm ui is available create another window then
     $ docker-compose -p storm -f submitter.yml up
 
 ### How can I connect to one of the containers?
-Find the forwarded ssh port for the container you wish to connect to (use `docker-compose ps`)
+Find the forwarded ssh port for the container you wish to connect to (use `docker-compose ps`) then edit clinet.sh
 
     $ client.sh
