@@ -11,30 +11,12 @@ The images are available directly from [https://index.docker.io](https://hub.doc
 
 - install [docker-compose](http://docs.docker.com/compose/install/)
 
-##Usage
-
-Start a cluster:
-
-- ```docker-compose up```
-
-Destroy a cluster:
-
-- ```docker-compose stop```
-
-Add more supervisors:
-
-- ```docker-compose scale supervisor=3```
-
-##Building
-
-- ```rebuild.sh```
-
 ##FAQ
 ### How can I access Storm UI from my host?
 Take a look at docker-compose.yml:
 
     ui:
-      image: enow/storm-ui:1.0.2
+      image: enow/storm-ui
 	      ports:
 	        - "49080:8080"
 
@@ -57,14 +39,16 @@ or
 in my case.
 
 ### How can I deploy a topology?
-Since the nimbus host and port are not default, you need to specify where the nimbus host is, and what is the nimbus port number.<br/>
-Following the example above, after discovering the nimbus host IP (could be localhost, could be our docker VM ip as in the case of boot2docker), run the following command:
+Since the nimbus seeds and port are not default, you need to specify where the nimbus seeds is, and what is the nimbus port number on the topology. Then you just add ```docker-compose.yml```, ```submitter.yml```, builder folder to your maven project and type the following:
 
-    storm jar target/your-topology-fat-jar.jar com.your.package.AndTopology topology-name -c nimbus.host=192.168.99.100 -c nimbus.thrift.port=49627
+    $ docker-compose -p storm up
+
+And when the storm ui is available create another window then
+
+    $ docker-compose -p storm -f submitter.yml build
+    $ docker-compose -p storm -f submitter.yml up
 
 ### How can I connect to one of the containers?
 Find the forwarded ssh port for the container you wish to connect to (use `docker-compose ps`)
 
-    $ ssh root@`docker-machine ip` -p $CONTAINER_PORT
-
-The password is '1q2w3e!@#$' (from: https://registry.hub.docker.com/u/enow/main/dockerfile/).
+    $ client.sh
