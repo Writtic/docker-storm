@@ -1,0 +1,4 @@
+topology:
+  build: ./target
+  links:
+    - nimbus:nimbus
