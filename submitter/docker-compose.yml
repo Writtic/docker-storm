@@ -1,20 +1,21 @@
 zookeeper:
   image: enow/zookeeper
   ports:
-    - "2181:2181"
+    - "49181:2181"
+    - "22"
 nimbus:
   image: enow/storm-nimbus
   ports:
-    - "3773:3773"
-    - "3772:3772"
-    - "6627:6627"
+    - "49773:3773"
+    - "49772:3772"
+    - "49627:6627"
     - "22"
   links:
     - zookeeper:zk
 supervisor:
   image: enow/storm-supervisor
   ports:
-    - "8000:8000"
+    - "8000"
     - "22"
   links:
     - nimbus:nimbus
@@ -22,7 +23,7 @@ supervisor:
 ui:
   image: enow/storm-ui
   ports:
-    - "8080:8080"
+    - "49080:8080"
     - "22"
   links:
     - nimbus:nimbus
