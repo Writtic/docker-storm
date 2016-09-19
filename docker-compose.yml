@@ -1,0 +1,57 @@
+version: '2'
+services:
+  zookeeper:
+    image: enow/zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      - SERVER_ID=1
+      - ADDITIONAL_ZOOKEEPER_1=server.1=0.0.0.0:2888:3888
+  nimbus:
+    image: enow/storm
+    command: nimbus -c storm.local.hostname=\"nimbus\" -c nimbus.seeds=\"[\\\"192.168.99.100\\\"]\"
+    container_name: nimbus
+    environment:
+      - STORM_ZOOKEEPER_SERVERS=192.168.99.100
+    ports:
+      - "3773:3773"
+      - "3772:3772"
+      - "6627:6627"
+    depends_on:
+      - zookeeper
+  supervisor:
+    image: enow/storm
+    command: supervisor -c storm.local.hostname=\"nimbus\" -c nimbus.seeds=\"[\\\"192.168.99.100\\\"]\" -c supervisor.slots.ports=\"[6700,6701,6702,6703]\"
+    container_name: supervisor
+    environment:
+      - STORM_ZOOKEEPER_SERVERS=192.168.99.100
+    ports:
+      - "8000:8000"
+    depends_on:
+      - nimbus
+  ui:
+    image: enow/storm
+    command: ui -c storm.local.hostname=\"nimbus\" -c nimbus.seeds=\"[\\\"192.168.99.100\\\"]\"
+    container_name: ui
+    environment:
+      - STORM_ZOOKEEPER_SERVERS=192.168.99.100
+    ports:
+      - "8080:8080"
+    depends_on:
+      - nimbus
+  topology:
+    build: ./submitter
+    container_name: topology
+    command: jar ./topology.jar com.your.package.class args[0] -c storm.local.hostname=\"nimbus\" -c nimbus.seeds=\"[\\\"192.168.99.100\\\"]\"
+    environment:
+      - STORM_ZOOKEEPER_SERVERS=192.168.99.100
+      - initial_delay_seconds=20
+    labels:
+      initial_delay_seconds: "10"
+    depends_on:
+      - nimbus
+networks:
+  default:
+    external:
+      name: storm

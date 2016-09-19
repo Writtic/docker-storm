@@ -43,11 +43,6 @@ or
 in my case.
 
 ### How can I deploy a topology?
-Since the nimbus seeds and port are not default, you need to specify where the nimbus seeds is, and what is the nimbus port number on the topology. Then you just add ```docker-compose.yml``` builder folder to your maven project and type the following:
+Since the nimbus seeds and port are not default, you need to specify where the nimbus seeds is, and what is the nimbus port number on the topology. Then you just add `docker-compose.yml` and `submitter.sh` on `submitter` folder to `target` folder in your maven project and type the following:
 
     $ docker-compose -p storm up
-
-### How can I connect to one of the containers?
-Find the forwarded ssh port for the container you wish to connect to (use `docker-compose ps`) then edit clinet.sh
-
-    $ client.sh
