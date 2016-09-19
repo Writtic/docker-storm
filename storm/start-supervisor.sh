@@ -25,7 +25,7 @@ fi
 # nimbus.seeds
 NIMBUS_SEEDS=
 if [[ -z "$NIMBUS_SEEDS" ]] ; then
-    NIMBUS_SEEDS="[\"nimbus\"]"
+    NIMBUS_SEEDS="[$HOST]"
 fi
 sed -i -e "s/%zookeeper%/$STORM_ZOOKEEPER_SERVERS/g" $STORM_HOME/conf/storm.yaml
 sed -i -e "s/%nimbus%/$NIMBUS_SEEDS/g" $STORM_HOME/conf/storm.yaml
