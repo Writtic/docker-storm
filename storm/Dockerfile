@@ -5,8 +5,7 @@ ENV STORM_VERSION 1.0.2
 ENV STORM_HOME /usr/share/storm
 
 # Download and Install Apache Storm from http://mirror.apache-kr.org/storm.html
-RUN apt-get update -y && \
-    apt-get install -y python3 && \
+RUN apt-get install -y python3 && \
     wget -q -O - http://mirror.apache-kr.org/storm/apache-storm-$STORM_VERSION/apache-storm-$STORM_VERSION.tar.gz | tar -xzf - -C /usr/share && \
     mv /usr/share/apache-storm-$STORM_VERSION $STORM_HOME && \
     rm -rf apache-storm-$STORM_VERSION.tar.gz && \
@@ -18,7 +17,7 @@ RUN apt-get update -y && \
 
 # Add scripts required to run storm daemons under supervision
 ADD storm.yaml $STORM_HOME/conf/storm.yaml
-ADD cluster.xml $STORM_HOME/logback/cluster.xml
+ADD cluster_original.xml $STORM_HOME/log4j2/cluster.xml
 ADD config-supervisord.sh /usr/bin/config-supervisord.sh
 ADD start-supervisor.sh /usr/bin/start-supervisor.sh
 RUN chmod a+x /usr/bin/config-supervisord.sh && chmod a+x /usr/bin/start-supervisor.sh
