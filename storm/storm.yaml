@@ -1,6 +1,0 @@
-storm.zookeeper.servers: %zookeeper%
-nimbus.seeds: %nimbus%
-drpc.servers: %nimbus%
-drpc.port: 3772
-drpc.invocations.port: 3773
-supervisor.slots.ports: %supervisor.solts%

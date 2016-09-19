@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # storm.zookeeper.servers
 ZOOKEEPER_SERVERS_ESCAPED=
 if ! [ -z "$STORM_ZOOKEEPER_SERVERS" ]; then
@@ -15,7 +14,6 @@ fi
 
 # storm.local.hostname
 HOST=" -c storm.local.hostname=$(hostname -i | awk '{print $1;}')"
-
 # For the nimbus, apply "nimbus" as default hostname
 for arg in "$@"
 do
@@ -35,18 +33,7 @@ do
 done
 
 # nimbus.seeds
-# NIMBUS_SEEDS=" -c nimbus.seeds=\"[\\\"nimbus\\\"]\""
-NIMBUS_SEEDS_ESCAPED=
-if ! [ -z "$NIMBUS_SEEDS" ]; then
-    # All nimbus seeds IPs in an array
-    IFS=', ' read -r -a NIMBUS_SEEDS_ARRAY <<< "$NIMBUS_SEEDS"
-    for index in "${!NIMBUS_SEEDS_ARRAY[@]}"
-    do
-        NIMBUS_SEEDS_ESCAPED=$NIMBUS_SEEDS_ESCAPED,"\\\"${NIMBUS_SEEDS_ARRAY[index]}\\\""
-    done
-    NIMBUS_SEEDS_ESCAPED=[${NIMBUS_SEEDS_ESCAPED:1}]
-    NIMBUS_SEEDS_ESCAPED=" -c nimbus.seeds=\"$NIMBUS_SEEDS_ESCAPED\""
-fi
+NIMBUS_SEEDS=" -c nimbus.seeds=\"[\"nimbus\"]\""
 
 # Make sure provided arguments are not overridden
 for arg in "$@"
@@ -61,14 +48,14 @@ do
         SUPERVISOR_SLOTS=
     fi
     if [[ $arg == *"nimbus.seeds"* ]] ; then
-        NIMBUS_SEEDS_ESCAPED=
+        NIMBUS_SEEDS=
     fi
     if [[ $arg == *"nimbus.host"* ]] ; then
-        NIMBUS_SEEDS_ESCAPED=
+        NIMBUS_SEEDS=
     fi
 done
 
-CMD="exec bin/storm $@$NIMBUS_SEEDS_ESCAPED$SUPERVISOR_SLOTS$HOST$ZOOKEEPER_SERVERS_ESCAPED"
+CMD="exec bin/storm $@$NIMBUS_SEEDS$SUPERVISOR_SLOTS$HOST$ZOOKEEPER_SERVERS_ESCAPED"
 
 echo "$CMD"
 eval "$CMD"
