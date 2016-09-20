@@ -17,8 +17,11 @@ EXPOSE 6700 6701 6702 6703 \
 # Install and set everything up
 RUN \
 alias python=python3 && \
+alias pip=pip3 && \
+apt-get update -y && \
 apt-get install -y \
-python && \
+python3 \
+python3-pip && \
 wget -q -N http://mirrors.gigenet.com/apache/storm/${BIN_VERSION}/${BIN_VERSION}.tar.gz && \
 tar --strip-components=1 -C /usr/share/storm -xvf ${BIN_VERSION}.tar.gz && \
 rm ${BIN_VERSION}.tar.gz && \
