@@ -1,4 +1,4 @@
-[![Docker Pulls](https://img.shields.io/docker/pulls/enow/storm.svg)](https://hub.docker.com/r/enow/storm/) [![Docker Stars](https://img.shields.io/docker/stars/enow/storm.svg)](https://hub.docker.com/r/enow/storm/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/enow/storm.svg)](https://hub.docker.com/r/enow/storm/) 
 [![](https://images.microbadger.com/badges/image/enow/storm.svg)](https://hub.docker.com/r/enow/storm/) [![](https://images.microbadger.com/badges/version/enow/storm.svg)](https://hub.docker.com/r/enow/storm/)
 docker-storm
 ============
