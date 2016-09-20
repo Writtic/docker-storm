@@ -56,8 +56,8 @@ do
 done
 
 if ! [ -z "$initial_delay_seconds" ]; then
+    echo "sleep: $initial_delay_seconds"
     sleep "$initial_delay_seconds"
-    echo "sleep: $initial_delay_seconds sec"
 fi
 
 CMD="exec bin/storm $@$NIMBUS_SEEDS$SUPERVISOR_SLOTS$HOST$ZOOKEEPER_SERVERS_ESCAPED"
